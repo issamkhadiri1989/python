@@ -1,0 +1,15 @@
+services:
+  app:
+    build: 
+      context: ./infra/python
+      dockerfile: ./Dockerfile
+    container_name: python-cli
+    environment:
+      - APP_ENV=development
+    volumes:
+      # Mount local code so edits apply without rebuilding
+      - ./app:/app
+    # Keep the container alive so you can use `docker compose exec`
+    command: ["sleep", "infinity"]
+    stdin_open: true
+    tty: true
